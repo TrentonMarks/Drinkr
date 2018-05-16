@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" ng-app="MyApp">
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js" charset="utf-8"></script>
+        <script src="/js/app.js" charset="utf-8"></script>
+        <link rel="stylesheet" href="/css/main.css">
+        <meta charset="utf-8">
+        <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
+        <title>Drink'r</title>
+    </head>
+
+    <body ng-controller="MyController as ctrl">
+      <!-- navigation -->
+        <div class="nav">
+            <ul class="nav-left">
+                <li><a href="#recipes">Drinks</a></li>
+                <li><a href="/contact.html">contact</a></li>
+            </ul>
+
+            <ul class="nav-right">
+                <li><a href="#">sign up</a></li>
+                <li><a href="#">log in</a></li>
+            </ul>
+        </div>
+
+        <!-- main container -->
+        <div id="home" class="cont">
+            <!-- logo/brand -->
+            <div class="row logo">
+                <img src="/assets/glass.png" alt="Drink'R Logo">
+                <h1>Drink'r</h1>
+                <h2>Tip One Back</h2>
+            </div>
+
+            <!-- create/add recipe -->
+            <div id="create" class="row create">
+                <!-- create recipe form -->
+                <h2>Add Your Own Signature Drink!</h2>
+                <hr>
+                <form ng-submit="ctrl.createDrink()">
+                    <!-- name -->
+                    <label for="name">Drink name</label>
+                    <input class="u-full-width" ng-model="ctrl.name" type="text" placeholder="recipe name" required>
+
+                    <!-- glass -->
+                    <label for="glass">Glass</label>
+                    <textarea class="u-full-width" ng-model="ctrl.glass" type="text" placeholder="recipe glass" required></textarea>
+                    <!-- ingredients -->
+                    <label for="ingredients">Ingredients/Measurements</label>
+                    <textarea class="u-full-width" ng-model="ctrl.ingredients" type="text" placeholder="recipe ingredients and measurements" required></textarea>
+                    <!-- instructions -->
+                    <label for="instructions">Instructions</label>
+                    <textarea class="u-full-width" ng-model="ctrl.instructions" type="text" placeholder="recipe instructions" required></textarea>
+                    <!-- image -->
+                    <label for="image">Image</label>
+                    <input class="u-full-width" ng-model="ctrl.image" type="text" placeholder="image of drink" required>
+                    <!-- submit button -->
+                    <button class="u-full-width button-primary" type="submit">submit</button>
+                </form>
+            </div>
+
+            <!-- show/edit recipes -->
+            <div id="recipes" class="row recipes">
+                <h2>Drinks Database</h2>
+                <hr>
+                <!-- unordered list of recipes by most recent -->
+                <ul>
+                    <li ng-repeat="drinks in ctrl.drinks">
+                        {{drinks.name}}
+                        <span>
+                            <a ng-click="(ctrl.indexOfShow === $index) ? ctrl.indexOfShow = null : ctrl.indexOfShow = $index">
+                                <i class="fas fa-power-off"></i>
+                            </a>
+                            <!-- likes, like button -->
+                            <span>
+                                {{drinks.likes}}
+                                <a ng-click="ctrl.updateLikes(drinks)">
+                                    <i class="fas fa-angle-double-up"></i>
+                                </a>
+                            </span>
+                            <!-- edit button
+                            when clicked, only show edit form of selected recipe -->
+                            <a ng-click="(ctrl.indexOfEditFormToShow === $index) ? ctrl.indexOfEditFormToShow = null : ctrl.indexOfEditFormToShow = $index">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <!-- delete button -->
+                            <a ng-click="ctrl.deleteDrinks(drinks._id)">
+                                <i class="fas fa-trash-alt"></i>
+                            </a>
+                        </span>
+
+                        <!-- view/show section
+                        hidden until view button is clicked -->
+                        <div class="row edit show">
+                            <!-- view/show form -->
+                            <div ng-if="$index === ctrl.indexOfShow">
+                                <!-- name -->
+                                <label for="name">Drink Name</label>
+                                <p>{{drinks.name}}</p>
+
+                                <!-- glass -->
+                                <label for="glass">Glass</label>
+                                <p>{{drinks.glass}}</p>
+                                <!-- ingredients -->
+                                <label for="ingredients">Ingredients/Measurements</label>
+                                <p>{{drinks.ingredients}}</p>
+                                <!-- instructions -->
+                                <label for="instructions">Instructions</label>
+                                <p>{{drinks.instructions}}</p>
+                                <!-- Image -->
+                                <label for="image">Image</label>
+                                <img class="show-img" src="{{drinks.image}}" alt="drink img">
+
+                                <!-- close/collapse button
+                                closes view/show container when selected -->
+                                <button class="u-full-width button-primary" ng-click="(ctrl.indexOfShow === $index) ? ctrl.indexOfShow = null : ctrl.indexOfShow = $index">close</button>
+                            </div>
+                        </div> <!-- end of view/show section -->
+
+                        <!-- edit section
+                        hidden until edit button is clicked -->
+                        <div class="row edit" sf-form="theForm" sf-model="model">
+                            <!-- edit recipe form -->
+                            <form ng-submit="ctrl.updateDrink(drinks)" ng-if="$index === ctrl.indexOfEditFormToShow">
+                                <!-- name -->
+                                <label for="name">Drink Name</label>
+                                <input class="u-full-width" type="text" ng-model="ctrl.updatedName"
+                                value="drinks.name"
+                                placeholder="{{drinks.name}}">
+                                <!-- glass -->
+                                <label for="glass">glass</label>
+                                <textarea class="u-full-width" ng-model="ctrl.updatedglass"
+                                value="drinks.glass"
+                                placeholder="{{drinks.glass}}"></textarea>
+                                <!-- ingredients -->
+                                <label for="ingredients">Ingredients/Measurements</label>
+                                <textarea class="u-full-width" ng-model="ctrl.updatedIngredients"
+                                value="drinks.ingredients"
+                                placeholder="{{drinks.ingredients}}"></textarea>
+                                <!-- instructions -->
+                                <label for="instructions">Instructions</label>
+                                <textarea class="u-full-width" ng-model="ctrl.updatedInstructions"
+                                value="drinks.instructions"
+                                placeholder="{{drinks.instructions}}"></textarea>
+                                <!-- image -->
+                                <label for="image">Image</label>
+                                <input class="u-full-width"         type="text" ng-model="ctrl.updatedImage"
+                                value="drinks.image"
+                                placeholder="{{drinks.image}}">
+
+                                <!-- submit changes button
+                                closes edit container when selected -->
+                                <button type="submit"               name="button"
+                                value="Submit Edits" class="u-full-width button-primary">Submit Edits</button>
+                            </form>
+                        </div> <!-- end of edit section -->
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Container that holds data to display for RANDOM drinks -->
+            <div class="random-container">
+                <h1> Looking for Something New? </h1>
+                <h2> Try our Drink Randomizer -  the Fastest Way to Put a Pep in Your Step</h2>
+                <div class="random">
+                    <h2>{{ctrl.drink.strDrink}}</h2>
+                    <h4>{{ctrl.drink.strGlass}}</h4>
+                    <h6>{{ctrl.drink.strIngredient1}} {{ctrl.drink.strMeasure1}}</h6>
+                    <h6>{{ctrl.drink.strIngredient2}} {{ctrl.drink.strMeasure2}}</h6>
+                    <h6>{{ctrl.drink.strIngredient3}} {{ctrl.drink.strMeasure3}}</h6>
+                    <h6>{{ctrl.drink.strIngredient4}} {{ctrl.drink.strMeasure4}}</h6>
+                    <h6>{{ctrl.drink.strIngredient5}} {{ctrl.drink.strMeasure5}}</h6>
+                    <h6>{{ctrl.drink.strIngredient6}} {{ctrl.drink.strMeasure6}}</h6>
+                    <h6>{{ctrl.drink.strIngredient7}} {{ctrl.drink.strMeasure7}}</h6>
+                    <h6>{{ctrl.drink.strIngredient8}} {{ctrl.drink.strMeasure8}}</h6>
+                    <h6>{{ctrl.drink.strIngredient9}} {{ctrl.drink.strMeasure9}}</h6>
+                    <h6>{{ctrl.drink.strIngredient10}} {{ctrl.drink.strMeasure10}}</h6>
+                    <h6>{{ctrl.drink.strIngredient11}} {{ctrl.drink.strMeasure11}}</h6>
+                    <h6>{{ctrl.drink.strIngredient12}} {{ctrl.drink.strMeasure12}}</h6>
+                    <h6>{{ctrl.drink.strIngredient13}} {{ctrl.drink.strMeasure13}}</h6>
+                    <h6>{{ctrl.drink.strIngredient14}} {{ctrl.drink.strMeasure14}}</h6>
+                    <h6>{{ctrl.drink.strIngredient15}} {{ctrl.drink.strMeasure15}}</h6>
+                    <img ng-show="ctrl.reveal" class="random-img" src="{{ctrl.drink.strDrinkThumb}}" alt="img">
+                    <br><br>
+                    <h5>{{ctrl.drink.strInstructions}}</h5>
+                    <!-- Button that retrieves a random drink from the CocktailDB API -->
+                    <button ng-click="ctrl.getRandomDrink()" class='random-btn'>Get Random Drink</button>
+                </div>
+            </div>
+
+            <br><br><br><br><br><br>
+            <br><br><br><br><br><br>
+
+            
+            <footer class='footer'>
+                <p>Drink'R is a subsidiary of <a href="/aviato.html">Aviato</a></p>
+            </footer>
+    </body>
+</html>

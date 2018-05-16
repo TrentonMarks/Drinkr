@@ -1,0 +1,22 @@
+#aviato  {
+    background-image: url("https://wallup.net/wp-content/uploads/2017/11/17/271137-Aviato-Silicon_Valley-HBO.jpg");
+    text-align: center;
+    color: white;
+}
+
+.div{
+    background-color: rgba(0,0,0,0.6);
+    padding-top: 50px;
+    padding-bottom: 50px;
+    margin-top: 30vh;
+}
+
+.div h1 {
+    font-size: 40px;
+}
+.div h4 {
+    font-size: 30px;
+}
+.div h5 {
+    font-size: 20px;
+}

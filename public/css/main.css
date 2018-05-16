@@ -1,0 +1,308 @@
+
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display|Press+Start+2P');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css');
+
+
+body {
+  width: 100vw;
+  background: #FFA17F;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #00223E, #FFA17F);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #00223E, #FFA17F); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  font-family: 'Open Sans', sans-serif;
+}
+
+
+a, a:hover {
+  color: #286EF6;
+  text-decoration: none;
+}
+
+hr {
+  width: 7vw;
+  border-color: white;
+  margin: 0;
+  margin-bottom: 5vmin;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+}
+
+li {
+  margin: 0;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.button-primary {
+  margin-top: 2vmin;
+  color: black;
+}
+
+.cont {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* nav bar
+-------------------- */
+.nav {
+  height: 10vmin;
+  width: 100vw;
+  align-items: center;
+  display: column;
+  justify-content: space-between;
+  background: #286EF6
+  color: white;
+  position: fixed;
+  /* z-index: 1; */
+}
+
+.nav-left {
+
+  width: 65vw;
+  align-items: center;
+  display: column
+}
+
+.nav-right {
+  width: 65vw;
+}
+
+.nav > ul {
+  align-items: center;
+  display: column;
+  justify-content: center;
+  margin: 0;
+}
+
+.nav > .nav-right {
+  justify-content: center;
+}
+
+.nav > ul > li {
+  margin: 0;
+}
+
+.nav > ul > li > a {
+  /* border: 1px solid black; */
+  font-size: 2.3vmin;
+  margin: 0.2vmin;
+  padding: 2.7vmin 2vmin;
+  transition: 600ms ease-out;
+}
+
+.nav > ul > li > a:hover {
+
+  /* border: 1px solid white; */
+  color: white;
+  transition: 400ms ease-in;
+}
+
+/* logo/brand
+-------------------- */
+.logo, .create, .recipes, .about, .contact {
+  min-height: 90vh;
+  width: 100vw;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.logo {
+  font-family: 'Press Start 2P', cursive;
+  margin-top: 10vh;
+}
+
+.logo > img {
+  filter: invert(100%);
+}
+
+.logo > h1, .logo > h2 {
+
+  font-size: 5vmin;
+  font-weight: bold;
+  margin: 0;
+}
+
+.logo > h2 {
+  color:black;
+  font-size: 11vmin;
+  font-weight: normal;
+  margin-bottom: 10vh;
+}
+/* create
+-------------------- */
+.create {
+    background: rgba(113, 179, 128, 0.23);
+}
+
+.create > h2 {
+  margin-top: 10vh;
+}
+
+.create > form {
+  max-width: 60vw;
+  min-width: 60vw;
+  margin-bottom: 10vh;
+}
+
+/* recipes
+-------------------- */
+.recipes {
+  background: rgba(113, 179, 128, 0.23);
+}
+
+.recipes > h2 {
+  margin-top: 10vh;
+}
+
+.recipes > ul {
+  min-width: 60vw;
+  max-width: 60vw;
+  margin-bottom: 10vh;
+}
+.recipes > ul > li {
+  /* align-items: center;
+  display: flex;
+  justify-content: space-between; */
+  color: black;
+  padding: 5vmin;
+}
+
+.recipes > ul > li:nth-child(even) {
+  background: rgba(0,0,0,0.5);
+  border-radius: 5px;
+}
+
+.recipes > ul > li:nth-child(odd) {
+ border-radius: 5px;
+
+}
+
+.recipes > ul > li > span {
+  float: right;
+}
+
+.recipes > ul > li > span > a, .recipes > ul > li > span > span {
+  margin-left: 2vmin;
+}
+
+.edit > form, .show > div {
+  margin-top: 5vmin;
+}
+
+.edit > div > p, .edit > div > img {
+  padding: 6px 10px;
+}
+
+.edit > div > img {
+  max-width: 95%;
+}
+
+
+
+/* contact/footer
+-------------------- */
+.contact {
+  min-height: 27vh;
+  justify-content: flex-end;
+  color: var(--cookbook);
+  background: var(--slate);
+}
+
+.contact > h4 {
+  margin-top: 10vh;
+}
+
+.contact > hr {
+  border-color: var(--cookbook);
+}
+.contact > ul {
+  margin-bottom: 10vh;
+}
+
+.contact > ul, .contact > ul > a {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.contact > ul > li > a {
+  font-size: 5.3vmin;
+  margin: 2vmin;
+}
+
+.contact > ul > li > a:hover {
+  color: var(--mint);
+}
+.show-img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 5px;
+    border: 2px solid black;
+}
+.random-img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 5px;
+    border: 2px solid black;
+}
+.random{
+    text-align: center;
+}
+.random h2{
+    font-family: press start 2p;
+    font-size: 50px;
+    text-decoration: underline;
+}
+.random-btn{
+    color: #FF4300;
+    background-color: #BDFFF1;
+}
+
+.search-btn{
+    color: #FF4300;
+    background-color: #BDFFF1;
+}
+
+.contact{
+    background: #CC95C0;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #7AA1D2, #DBD4B4, #CC95C0);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #7AA1D2, #DBD4B4, #CC95C0); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.contact > form {
+
+  max-width: 60vw;
+  min-width: 60vw;
+  margin-bottom: 10vh;
+}
+
+#btn {
+    background-color: #516784;
+    color: white;
+}
+
+.contact h1{
+    padding-top: 10vh;
+}
+.footer{
+    margin-top: 20vh;
+}
+.footer a {
+    color: white;
+}
+.footer a:hover {
+    color: green;
+}
